@@ -15,3 +15,5 @@
       - 2003  # pull_over
     initial_operation_mode: 1001
     initial_autoware_control: true
+    use_pull_over: false
+    use_comfortable_stop: true
