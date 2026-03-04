@@ -8,7 +8,7 @@ instances:
   - name: common_ground_filter
     entity: ScanGroundFilter.node
 
-inputs:
+subscribers:
   # lidar
   - name: concatenated_pointcloud
 outputs:

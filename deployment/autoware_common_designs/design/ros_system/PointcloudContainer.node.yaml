@@ -10,7 +10,7 @@ launch:
   ros2_launch_file: pointcloud_container.launch.py
 
 # interface
-inputs: []
+subscribers: []
 outputs: []
 
 # parameters

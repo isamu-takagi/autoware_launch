@@ -13,7 +13,7 @@ instances:
   - name: traffic_light_crosswalk_estimator
     entity: CrosswalkTrafficLightEstimator.node
 
-inputs:
+subscribers:
   - name: vector_map
   - name: route
   - name: camera1/image

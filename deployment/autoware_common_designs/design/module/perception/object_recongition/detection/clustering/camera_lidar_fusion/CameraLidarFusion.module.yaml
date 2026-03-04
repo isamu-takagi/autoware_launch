@@ -12,7 +12,7 @@ instances:
   - name: detected_object_feature_remover
     entity: DetectedObjectFeatureRemover.node
 
-inputs:
+subscribers:
   - name: rois0
   - name: rois1
   - name: rois2

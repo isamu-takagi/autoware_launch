@@ -10,7 +10,7 @@ launch:
   ros2_launch_file: map.launch.xml
 
 # interfaces
-inputs: []
+subscribers: []
 
 outputs:
   - name: vector_map

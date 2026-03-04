@@ -6,7 +6,7 @@ instances:
   - name: map_based_prediction
     entity: MapBasedPrediction.node
 
-inputs:
+subscribers:
   - name: vector_map
   - name: traffic_lights
   - name: tracked_objects

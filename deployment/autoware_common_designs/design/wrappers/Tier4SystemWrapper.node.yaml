@@ -10,7 +10,7 @@ launch:
   ros2_launch_file: system.launch.xml
 
 # interfaces
-inputs:
+subscribers:
   - name: diagnostics
     message_type: diagnostic_msgs/msg/DiagnosticArray
     global: /diagnostics

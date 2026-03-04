@@ -12,7 +12,7 @@ launch:
   node_output: both
 
 # interfaces
-inputs:
+subscribers:
   - name: robot_description
     message_type: std_msgs/msg/String
   - name: joint_states

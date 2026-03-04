@@ -10,7 +10,7 @@ launch:
   ros2_launch_file: sample_system_sensing_wrapper.launch.xml
 
 # interfaces
-inputs:
+subscribers:
   - name: velocity_status
     message_type: autoware_vehicle_msgs/msg/VelocityReport
   - name: odometry

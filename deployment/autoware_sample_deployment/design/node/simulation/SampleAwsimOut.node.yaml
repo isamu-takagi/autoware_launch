@@ -11,7 +11,7 @@ launch:
   node_output: screen
 
 # interfaces
-inputs: []
+subscribers: []
 outputs:
   # GNSS
   - name: sensing/gnss/pose

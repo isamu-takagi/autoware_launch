@@ -8,7 +8,7 @@ instances:
   - name: tag_can_driver
     entity: TamagawaImuCanDriver.node
 
-inputs: []
+subscribers: []
 outputs:
   - name: imu_raw
 

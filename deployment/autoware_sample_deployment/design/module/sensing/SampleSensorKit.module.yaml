@@ -12,7 +12,7 @@ instances:
   - name: gnss
     entity: SampleSensorKitGnss.module
 
-inputs:
+subscribers:
   - name: velocity_status
   - name: odometry
   - name: twist

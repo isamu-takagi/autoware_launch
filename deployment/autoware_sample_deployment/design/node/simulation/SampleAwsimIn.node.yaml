@@ -11,7 +11,7 @@ launch:
   node_output: screen
 
 # interfaces
-inputs:
+subscribers:
   - name: awsim/awsim_rviz_plugins/npc_spawner/npc_name
     message_type: std_msgs/msg/String
   - name: awsim/awsim_rviz_plugins/npc_spawner/npc_velocity

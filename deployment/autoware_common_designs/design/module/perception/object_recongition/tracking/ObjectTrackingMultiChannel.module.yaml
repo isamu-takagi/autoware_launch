@@ -6,7 +6,7 @@ instances:
   - name: multi_object_tracker
     entity: MultiObjectTracker.node
 
-inputs:
+subscribers:
   - name: lidar_ml_objects
   - name: lidar_ml_short_range_objects
   - name: camera_lidar_rule_detector_objects

@@ -15,7 +15,7 @@ launch:
   node_output: screen
 
 # interface
-inputs:
+subscribers:
   - name: pointcloud
     message_type: sensor_msgs/msg/PointCloud2
     remap_target: ~/input/pointcloud

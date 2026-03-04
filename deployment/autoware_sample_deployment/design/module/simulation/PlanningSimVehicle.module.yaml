@@ -8,7 +8,7 @@ instances:
   - name: raw_vehicle_cmd_converter
     entity: RawVehicleCmdConverter.node
 
-inputs:
+subscribers:
   - name: control_cmd
   - name: odometry
   - name: accel

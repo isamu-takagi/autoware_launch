@@ -12,7 +12,7 @@ instances:
   - name: validation
     entity: ObstaclePointCloudBasedValidator.node
 
-inputs:
+subscribers:
   - name: pointcloud
   - name: obstacle_pointcloud
 outputs:

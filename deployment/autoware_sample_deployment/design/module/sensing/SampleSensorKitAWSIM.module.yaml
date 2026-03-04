@@ -10,7 +10,7 @@ instances:
   - name: imu
     entity: SampleSensorKitImu_decode.module
 
-inputs:
+subscribers:
   - name: lidar/top/pointcloud_raw_ex
   - name: imu/tamagawa/imu_raw
   - name: velocity_status

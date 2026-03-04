@@ -8,7 +8,7 @@ instances:
   - name: socket_can_sender
     entity: Ros2SocketCanSenderNode.node
 
-inputs:
+subscribers:
   - name: to_can_bus
 outputs:
   - name: from_can_bus

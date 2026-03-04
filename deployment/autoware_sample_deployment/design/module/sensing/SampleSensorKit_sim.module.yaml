@@ -12,7 +12,7 @@ override:
       entity: SampleSensorKitImu_decode.module
     - name: gnss
       entity: SampleSensorKitGnss_decode.module
-  inputs:
+  subscribers:
     - name: lidar/top/velodyne_packets
     - name: lidar/left/velodyne_packets
     - name: lidar/right/velodyne_packets

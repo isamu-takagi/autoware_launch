@@ -11,7 +11,7 @@ launch:
   respawn: true
   respawn_delay: 1.0
 
-inputs: []
+subscribers: []
 
 outputs:
   - name: nav_sat_fix

@@ -19,7 +19,7 @@ instances:
   - name: merger
     entity: TrafficLightCategoryMerger.node
 
-inputs:
+subscribers:
   - name: vector_map
   - name: image
   - name: camera_info

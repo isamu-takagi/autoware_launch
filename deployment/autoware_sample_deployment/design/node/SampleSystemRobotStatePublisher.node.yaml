@@ -11,7 +11,7 @@ launch:
   node_output: screen
 
 # interface
-inputs:
+subscribers:
   - name: robot_description
     message_type: std_msgs/msg/String
   - name: joint_states

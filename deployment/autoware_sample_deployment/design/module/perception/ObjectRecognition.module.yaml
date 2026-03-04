@@ -10,7 +10,7 @@ instances:
   - name: prediction
     entity: ObjectPredictionMapBased.module
 
-inputs:
+subscribers:
   # map
   - name: pointcloud_map
   - name: vector_map

@@ -6,7 +6,7 @@ instances:
   - name: vehicle_velocity_converter
     entity: PoseInitializer.node
 
-inputs: []
+subscribers: []
 outputs:
   - name: initialpose3d
   - name: localization/initialize

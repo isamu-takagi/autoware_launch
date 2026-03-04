@@ -8,7 +8,7 @@ instances:
   - name: gnss_poser
     entity: GnssPoser.node
 
-inputs:
+subscribers:
   - name: orientation
 outputs:
   - name: pose

@@ -8,7 +8,7 @@ instances:
   - name: validation
     entity: ObstaclePointCloudBasedValidator.node
 
-inputs:
+subscribers:
   - name: rois0
   - name: rois1
   - name: rois2

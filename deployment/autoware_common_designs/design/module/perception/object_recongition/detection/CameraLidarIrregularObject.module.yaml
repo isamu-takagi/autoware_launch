@@ -14,7 +14,7 @@ instances:
   - name: detected_object_feature_remover
     entity: DetectedObjectFeatureRemover.node
 
-inputs:
+subscribers:
   - name: pointcloud
   - name: rois0
   - name: rois1

@@ -8,7 +8,7 @@ instances:
   - name: voxel_based_compare_map_filter
     entity: VoxelBasedCompareMapFilter.node
 
-inputs:
+subscribers:
   - name: pointcloud
   - name: pointcloud_map
   - name: service_pointcloud_map_diff
