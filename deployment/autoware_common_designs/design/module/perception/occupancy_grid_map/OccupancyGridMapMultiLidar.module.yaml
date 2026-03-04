@@ -29,7 +29,7 @@ subscribers:
   - name: pointcloud_1
   - name: pointcloud_2
   - name: pointcloud_3
-outputs:
+publishers:
   - name: map
 
 connections:

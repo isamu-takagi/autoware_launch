@@ -22,7 +22,7 @@ subscribers:
   # lidar
   - name: obstacle_pointcloud
   - name: lidar_ml_objects
-outputs:
+publishers:
   - name: objects
   - name: map_filtered_obstacle_pointcloud
 

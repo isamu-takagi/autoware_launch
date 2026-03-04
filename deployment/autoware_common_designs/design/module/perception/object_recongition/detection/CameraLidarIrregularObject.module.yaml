@@ -24,7 +24,7 @@ subscribers:
   - name: camera_info1
   - name: camera_info2
   - name: camera_info3
-outputs:
+publishers:
   - name: objects
 
 connections:

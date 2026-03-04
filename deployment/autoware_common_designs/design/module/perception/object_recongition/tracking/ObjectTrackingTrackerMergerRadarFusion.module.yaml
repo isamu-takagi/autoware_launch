@@ -16,7 +16,7 @@ subscribers:
   - name: vector_map
   - name: detected_objects
   - name: radar_objects
-outputs:
+publishers:
   - name: objects
 
 connections:

@@ -30,7 +30,7 @@ subscribers:
   - name: camera_info6
   - name: camera_info7
   - name: euclidean_clusters
-outputs:
+publishers:
   - name: objects
 
 connections:

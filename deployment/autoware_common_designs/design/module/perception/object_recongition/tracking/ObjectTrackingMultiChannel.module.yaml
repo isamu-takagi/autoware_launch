@@ -13,7 +13,7 @@ subscribers:
   - name: camera_lidar_irregular_objects
   - name: tracker_based_detector_objects
   - name: radar_objects
-outputs:
+publishers:
   - name: objects
 
 connections:

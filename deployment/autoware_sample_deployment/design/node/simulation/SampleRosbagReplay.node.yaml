@@ -12,7 +12,7 @@ launch:
 
 # interfaces
 subscribers: []
-outputs:
+publishers:
   # GNSS
   - name: sensing/gnss/ublox/fix_velocity
     message_type: geometry_msgs/msg/TwistWithCovarianceStamped

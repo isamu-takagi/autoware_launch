@@ -13,7 +13,7 @@ launch:
 
 # interfaces
 subscribers: []
-outputs:
+publishers:
   - name: from_can_bus
     message_type: can_msgs/msg/Frame
 

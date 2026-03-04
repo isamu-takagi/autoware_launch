@@ -11,7 +11,7 @@ launch:
 
 # interface
 subscribers: []
-outputs: []
+publishers: []
 
 # parameters
 param_files: []

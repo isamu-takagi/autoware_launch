@@ -16,7 +16,7 @@ subscribers:
   - name: twist
   - name: odometry
   - name: imu
-outputs:
+publishers:
   - name: concatenated/pointcloud
   - name: concatenated/pointcloud_info
 

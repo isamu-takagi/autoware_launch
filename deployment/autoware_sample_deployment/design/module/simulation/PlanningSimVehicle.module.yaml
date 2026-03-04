@@ -16,7 +16,7 @@ subscribers:
   - name: actuation_status
   - name: operation_mode_state
 
-outputs:
+publishers:
   - name: actuation_cmd
   - name: doors/status
 

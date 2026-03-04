@@ -24,7 +24,7 @@ subscribers:
   - name: image
   - name: camera_info
   - name: route
-outputs:
+publishers:
   - name: classification/traffic_signals
   - name: detection/rois
 

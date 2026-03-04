@@ -27,7 +27,7 @@ subscribers:
   - name: velocity_status
     message_type: autoware_vehicle_msgs/msg/VelocityReport
 
-outputs:
+publishers:
   - name: command/control_cmd
     message_type: autoware_control_msgs/msg/Control
   - name: command/gear_cmd

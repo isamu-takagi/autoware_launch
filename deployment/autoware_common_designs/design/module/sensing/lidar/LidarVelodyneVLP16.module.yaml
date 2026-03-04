@@ -17,7 +17,7 @@ instances:
 subscribers:
   - name: twist
   - name: imu
-outputs:
+publishers:
   - name: pointcloud
 
 connections:

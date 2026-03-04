@@ -16,7 +16,7 @@ subscribers:
   - name: velocity_status
   - name: pose_ndt
   - name: odometry
-outputs:
+publishers:
   - name: vehicle_velocity_converter/twist_with_covariance
   - name: lidar/concatenated/pointcloud
   - name: imu/imu_data

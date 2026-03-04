@@ -11,7 +11,7 @@ instances:
 subscribers:
   # lidar
   - name: concatenated_pointcloud
-outputs:
+publishers:
   - name: pointcloud
 
 connections:

@@ -10,7 +10,7 @@ subscribers:
   - name: vector_map
   - name: traffic_lights
   - name: tracked_objects
-outputs:
+publishers:
   - name: objects
 
 connections:

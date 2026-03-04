@@ -16,7 +16,7 @@ subscribers:
   - name: steering_status
     message_type: autoware_vehicle_msgs/msg/SteeringReport
 
-outputs:
+publishers:
   - name: steering_status_scalar
     message_type: std_msgs/msg/Float32
 

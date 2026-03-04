@@ -12,7 +12,7 @@ instances:
 subscribers:
   - name: vector_map
   - name: radar_objects
-outputs:
+publishers:
   - name: radar_filtered_objects
 
 connections:

@@ -7,7 +7,7 @@ instances:
     entity: PoseInitializer.node
 
 subscribers: []
-outputs:
+publishers:
   - name: initialpose3d
   - name: localization/initialize
   - name: localization/initialization_state

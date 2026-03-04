@@ -13,7 +13,7 @@ subscribers:
   - name: pointcloud_map
   - name: service_pointcloud_map_diff
   - name: kinematic_state
-outputs:
+publishers:
   - name: filtered_pointcloud
 
 connections:

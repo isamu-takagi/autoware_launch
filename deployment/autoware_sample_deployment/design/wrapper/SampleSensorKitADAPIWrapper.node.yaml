@@ -51,7 +51,7 @@ subscribers:
   - name: system/fail_safe/mrm_state
     message_type: autoware_adapi_v1_msgs/msg/MrmState
 
-outputs:
+publishers:
   # Localization outputs
   - name: localization/initialization_state
     message_type: autoware_adapi_v1_msgs/msg/LocalizationInitializationState

@@ -12,7 +12,7 @@ subscribers:
   - name: obstacle_pointcloud
   - name: raw_pointcloud
 
-outputs:
+publishers:
   - name: map
 
 connections:

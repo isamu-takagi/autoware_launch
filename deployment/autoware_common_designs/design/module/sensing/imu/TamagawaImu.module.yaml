@@ -9,7 +9,7 @@ instances:
     entity: TamagawaImuCanDriver.node
 
 subscribers: []
-outputs:
+publishers:
   - name: imu_raw
 
 connections:

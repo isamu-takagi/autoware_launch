@@ -36,7 +36,7 @@ subscribers:
   - name: initialization_state
     message_type: autoware_adapi_v1_msgs/msg/LocalizationInitializationState
 
-outputs:
+publishers:
   - name: ros_transform
     message_type: tf2_msgs/msg/TFMessage
     global: /tf

@@ -10,7 +10,7 @@ instances:
 
 subscribers:
   - name: to_can_bus
-outputs:
+publishers:
   - name: from_can_bus
 
 connections:

@@ -20,7 +20,7 @@ subscribers:
   - name: camera1/camera_info
   - name: pointcloud
   - name: external_traffic_signals
-outputs:
+publishers:
   - name: traffic_signals
 
 connections:

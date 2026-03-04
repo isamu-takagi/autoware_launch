@@ -29,7 +29,7 @@ subscribers:
   - name: image_raw5
   - name: image_raw6
   - name: image_raw7
-outputs:
+publishers:
   - name: rois0
   - name: rois1
   - name: rois2

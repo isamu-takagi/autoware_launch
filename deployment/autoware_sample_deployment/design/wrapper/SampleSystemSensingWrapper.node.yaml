@@ -24,7 +24,7 @@ subscribers:
   - name: steering_angle
     message_type: std_msgs/msg/Float32
 
-outputs:
+publishers:
   # lidar
   - name: lidar/top/pointcloud
     message_type: sensor_msgs/msg/PointCloud2

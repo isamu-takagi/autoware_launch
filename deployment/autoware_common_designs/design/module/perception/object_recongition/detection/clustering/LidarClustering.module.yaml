@@ -12,7 +12,7 @@ instances:
 
 subscribers:
   - name: pointcloud
-outputs:
+publishers:
   - name: detected_objects
   - name: cluster_objects
 

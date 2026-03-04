@@ -18,7 +18,7 @@ subscribers:
   - name: twist
   - name: pose_ndt
 
-outputs:
+publishers:
   - name: imu/imu_data
   - name: vehicle_velocity_converter/twist_with_covariance
   - name: gnss/pose

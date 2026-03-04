@@ -20,7 +20,7 @@ subscribers:
   - name: camera_info
   - name: route
   - name: pointcloud
-outputs:
+publishers:
   - name: classification/traffic_signals
   - name: detection/rois
 
