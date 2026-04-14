@@ -1,0 +1,21 @@
+units:
+  - path: /api/autonomous_available
+    type: and
+    list:
+      - { type: link, link: /api/maintenance/state }
+
+  - path: /api/pull_over_available
+    type: and
+    list:
+      - { type: link, link: /api/maintenance/state }
+
+  - path: /api/comfortable_stop_available
+    type: and
+    list:
+      - { type: link, link: /api/maintenance/state }
+
+  - path: /api/maintenance/state
+    type: diag
+    node: maintenance_management
+    name: state
+    timeout: 3.0
