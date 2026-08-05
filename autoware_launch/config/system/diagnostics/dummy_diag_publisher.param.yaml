@@ -34,3 +34,6 @@
       # perception
       ## /autoware/perception/topic_rate_check/pointcloud
       "topic_state_monitor_obstacle_segmentation_pointcloud: perception_topic_status": default
+
+      ## /autoware/perception/topic_rate_check/traffic_signals
+      "topic_state_monitor_traffic_light_recognition_traffic_signals: perception_topic_status": default
