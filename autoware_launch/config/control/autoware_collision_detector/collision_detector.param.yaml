@@ -9,7 +9,7 @@
 # 'reason' can be any single-line text without braces.
 # To keep local changes, annotate fields with '# {OVERRIDE}' or '# {OVERRIDE: reason}'.
 #
-# Source: https://github.com/autowarefoundation/autoware_universe/blob/1be9bb3bd92e38ffb1b9690952ab68400d50c051/control/autoware_collision_detector/config/collision_detector.param.yaml
+# Source: https://github.com/autowarefoundation/autoware_universe/blob/5540be5f3c5ac1584051a599ecd92ac9a8bb9701/control/autoware_collision_detector/config/collision_detector.param.yaml
 
 /**:
   ros__parameters:
@@ -26,6 +26,10 @@
       filter_bicycle: false
       filter_motorcycle: false
       filter_pedestrian: false
+      filter_animal: true
+      filter_hazard: true
+      filter_over_drivable: true
+      filter_under_drivable: true
       filter_unknown: true
     ignore_behind_rear_axle: true  # If true, collisions detected behind the rear axle of the ego vehicle are ignored
     time_buffer:  # buffer to start or stop publishing the ERROR diagnostic
