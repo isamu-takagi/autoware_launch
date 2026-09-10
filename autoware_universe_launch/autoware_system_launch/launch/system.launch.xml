@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <launch>
+  <!-- Parameter directory -->
+  <arg name="system_config_directory" default="$(find-pkg-share autoware_system_launch)/config"/>
+
   <!-- Parameter files -->
   <arg name="component_state_monitor_topic_path"/>
   <arg name="duplicated_node_checker_param_path"/>
