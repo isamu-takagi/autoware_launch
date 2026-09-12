@@ -3,7 +3,7 @@
   <!-- Parameter files -->
   <arg name="component_state_monitor_topic_path"/>
   <arg name="duplicated_node_checker_param_path"/>
-  <arg name="processing_time_checker_param_path"/>
+  <arg name="processing_time_checker_param_paths"/>
   <arg name="pipeline_latency_monitor_param_path"/>
   <arg name="mrm_comfortable_stop_operator_param_path"/>
   <arg name="mrm_emergency_stop_operator_param_path"/>
@@ -48,6 +48,12 @@
 
   <!-- temporary: control_command_gate migration -->
   <arg name="use_control_command_gate" default="false"/>
+
+  <!-- Parameter preprocessing -->
+  <include file="$(find-pkg-share tier4_system_launch)/launch/utils/merge_ros_param.py">
+    <arg name="output" value="processing_time_checker_param_path"/>
+    <arg name="paths" value="$(var processing_time_checker_param_paths)"/>
+  </include>
 
   <group>
     <push-ros-namespace namespace="/system"/>
