@@ -1,11 +1,11 @@
 files:
-  - { path: $(dirname)/control.yaml }
-  - { path: $(dirname)/localization.yaml }
-  - { path: $(dirname)/map.yaml }
-  - { path: $(dirname)/perception.yaml }
-  - { path: $(dirname)/planning.yaml }
-  - { path: $(dirname)/system.yaml }
-  - { path: $(dirname)/vehicle.yaml }
+  - path: $(dirname)/control.yaml
+  - path: $(dirname)/localization.yaml
+  - path: $(dirname)/map.yaml
+  - path: $(dirname)/perception.yaml
+  - path: $(find-pkg-share autoware_planning_config)/config/system/diagnostic_graph_$(var planning_setting).yaml
+  - path: $(dirname)/system.yaml
+  - path: $(dirname)/vehicle.yaml
 
 units:
   - path: /autoware/modes/local
