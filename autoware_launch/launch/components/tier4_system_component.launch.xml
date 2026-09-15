@@ -4,8 +4,8 @@
   <set_parameter name="use_sim_time" value="$(var use_sim_time)"/>
 
   <arg name="planning_setting" default="rule_based">
-    <choices value="rule_based"/>
-    <choices value="diffusion_planner"/>
+    <choice value="rule_based"/>
+    <choice value="diffusion_planner"/>
   </arg>
 
   <let name="diagnostic_graph_aggregator_graph_vars" value="'{planning_setting: $(var planning_setting)}'"/>

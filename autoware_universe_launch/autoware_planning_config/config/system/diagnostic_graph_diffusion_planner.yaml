@@ -1,5 +1,5 @@
 files:
-  - { path: $(dirname)/autoware-main.yaml }
+  - { path: $(dirname)/diagnostic_graph_rule_based.yaml }
 
 edits:
   - { type: remove, path: /autoware/planning/trajectory_validation/finite }
