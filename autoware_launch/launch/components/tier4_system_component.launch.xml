@@ -3,10 +3,12 @@
   <arg name="use_sim_time" default="false"/>
   <set_parameter name="use_sim_time" value="$(var use_sim_time)"/>
 
-  <arg name="planning_setting" default="rule_based">
+  <arg name="planning_setting">
     <choice value="rule_based"/>
     <choice value="diffusion_planner"/>
   </arg>
+
+  <let name="planning_setting" value="diffusion_planner"/>
 
   <let name="diagnostic_graph_aggregator_graph_vars" value="'{planning_setting: $(var planning_setting)}'"/>
   <let

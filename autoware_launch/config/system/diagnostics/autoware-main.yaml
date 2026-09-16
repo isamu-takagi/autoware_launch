@@ -29,6 +29,9 @@ units:
     list:
       - { type: link, link: /adapi/mrm_request/delegate }
 
+  - path: /autoware/modes/autonomous/available
+    type: ok
+
   - path: /autoware/modes/autonomous
     type: and
     list:
