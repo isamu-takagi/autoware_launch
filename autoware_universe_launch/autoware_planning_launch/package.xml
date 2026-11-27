@@ -57,7 +57,6 @@
   <exec_depend>autoware_behavior_velocity_planner</exec_depend>
   <exec_depend>autoware_costmap_generator</exec_depend>
   <exec_depend>autoware_diffusion_planner</exec_depend>
-  <exec_depend>autoware_external_cmd_selector</exec_depend>
   <exec_depend>autoware_external_velocity_limit_selector</exec_depend>
   <exec_depend>autoware_freespace_planner</exec_depend>
   <exec_depend>autoware_hazard_lights_selector</exec_depend>

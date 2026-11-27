@@ -233,8 +233,6 @@ connections:
     - planning.subscriber.pointcloud
   - - perception.publisher.traffic_light_recognition/traffic_signals
     - planning.subscriber.traffic_signals
-  - - control.publisher.operation_mode/state
-    - planning.subscriber.operation_mode_state
   - - control.publisher.command/control_cmd
     - planning.subscriber.control_cmd
   - - control.publisher.predicted_trajectory
@@ -256,8 +254,6 @@ connections:
     - control.subscriber.planning_turn_indicators_cmd
   - - planning.publisher.hazard_lights_cmd
     - control.subscriber.hazard_lights_cmd
-  - - control.publisher.operation_mode/state
-    - control.subscriber.operation_mode_state
 
   - - adapi.publisher.api/operation_mode/state
     - control.subscriber.api_operation_mode_state
@@ -299,8 +295,6 @@ connections:
 
   - - system.publisher.fail_safe/mrm_state
     - adapi.subscriber.system/fail_safe/mrm_state
-  - - system.publisher.fail_safe/mrm_state
-    - control.subscriber.mrm_state
 
   - - localization.publisher.kinematic_state
     - system.subscriber.kinematic_state
@@ -324,22 +318,16 @@ connections:
 
   - - control.publisher.command/control_cmd
     - vehicle.subscriber.control_cmd
-  - - control.publisher.command/emergency_cmd
-    - vehicle.subscriber.emergency_cmd
   - - control.publisher.command/gear_cmd
     - vehicle.subscriber.gear_cmd
   - - control.publisher.command/hazard_lights_cmd
     - vehicle.subscriber.hazard_lights_cmd
   - - control.publisher.command/turn_indicators_cmd
     - vehicle.subscriber.turn_indicators_cmd
-  - - control.publisher.operation_mode/state
-    - vehicle.subscriber.operation_mode_state
   - - localization.publisher.kinematic_state
     - vehicle.subscriber.odometry
   - - localization.publisher.acceleration
     - vehicle.subscriber.accel
-  - - vehicle.server.control_mode_request
-    - control.client.control_mode_request
 
   - - vehicle.publisher.status/control_mode
     - control.subscriber.control_mode_report
@@ -399,14 +387,8 @@ connections:
   - - adapi.server.api/routing/change_route_points
     - api.client.api/routing/change_route_points
 
-  - - control.publisher.operation_mode/state
-    - adapi.subscriber.system/operation_mode/state
   - - system.publisher.operation_mode/availability
     - adapi.subscriber.system/operation_mode/availability
-  - - control.server.operation_mode/change_operation_mode
-    - adapi.client.system/operation_mode/change_operation_mode
-  - - control.server.operation_mode/change_autoware_control
-    - adapi.client.system/operation_mode/change_autoware_control
   - - system.publisher.diagnostics_graph/struct
     - adapi.subscriber.system/diagnostics_graph/struct
   - - system.publisher.diagnostics_graph/status
@@ -457,18 +439,8 @@ remaps:
     topic: /api/external/set/rtc_commands
   - source: api.server.api/external/set/rtc_auto_mode
     topic: /api/external/set/rtc_auto_mode
-  - source: control.publisher.operation_mode/state
-    topic: /system/operation_mode/state
-  - source: control.server.operation_mode/change_operation_mode
-    topic: /system/operation_mode/change_operation_mode
-  - source: control.server.operation_mode/change_autoware_control
-    topic: /system/operation_mode/change_autoware_control
   - source: control.publisher.external_emergency
     topic: /api/autoware/get/emergency
-  - source: control.publisher.api/engage
-    topic: /api/autoware/get/engage
-  - source: control.server.engage_service
-    topic: /api/autoware/set/engage
   - source: control.server.external_emergency_service
     topic: /api/autoware/set/emergency
   - source: adapi.publisher.external/local/gear_cmd
@@ -722,8 +694,6 @@ E2ESimulation:
         - control.subscriber.steering_status
       - - awsim.publisher.vehicle/status/steering_status
         - planning.subscriber.steering_status
-      - - awsim.server.control/control_mode_request
-        - control.client.control_mode_request
       - - awsim.publisher.vehicle/status/gear_status
         - control.subscriber.gear_status
       - - awsim.publisher.vehicle/status/control_mode
@@ -867,8 +837,6 @@ PlanningSimulation:
         - control.subscriber.steering_status
       - - simulator.publisher.vehicle/status/steering_status
         - planning.subscriber.steering_status
-      - - simulator.server.control/control_mode_request
-        - control.client.control_mode_request
       - - simulator.publisher.vehicle/status/actuation_status
         - vehicle.subscriber.actuation_status
       - - vehicle.publisher.actuation_cmd

@@ -27,10 +27,6 @@ parameters:
     param_files:
       - param_path: $(find-pkg-share autoware_control_config)/config/operation_mode_transition_manager/operation_mode_transition_manager.param.yaml
       - param_path: $(find-pkg-share autoware_control_config)/config/common/nearest_search.param.yaml
-  - node: /control/external_cmd_selector
-    param_files:
-      - param_path: $(find-pkg-share autoware_control_config)/config/external_cmd_selector/external_cmd_selector.param.yaml
-      - param_path: $(find-pkg-share autoware_control_config)/config/common/nearest_search.param.yaml
   - node: /control/trajectory_follower/lane_departure_checker_node
     param_files:
       - param_path: $(find-pkg-share autoware_control_config)/config/lane_departure_checker/lane_departure_checker.param.yaml

@@ -7,7 +7,7 @@ launch/
 ├── control.launch.xml                                    # control entry: preset, parameter paths, containers and the unit includes
 ├── trajectory_follower/trajectory_follower.launch.xml    # controller and lane departure checker
 ├── command_gate/command_gate.launch.xml                  # vehicle cmd gate (or control command gate), shift decider, operation mode transition manager
-├── external_command/external_command.launch.xml          # external command selector and converter
+├── external_command/external_command.launch.xml          # external command converters for local and remote
 └── control_checker/control_checker.launch.xml            # control validator, autonomous emergency braking, collision detector, optional checkers
 design/module/                                            # Autoware System Designer modules, one per launch unit
 ├── Control.module.yaml
@@ -26,7 +26,7 @@ design/module/                                            # Autoware System Desi
 - `control.launch.xml` — the entry point. It includes the module preset, resolves every parameter file, pushes the `control` namespace and creates the two containers (`control_container` for the command path, `control_check_container` for the composable checkers), then includes one launch file per unit and the control evaluator.
 - `trajectory_follower/trajectory_follower.launch.xml` — the controller (`trajectory_follower_mode`: `trajectory_follower_node`, `smart_mpc_trajectory_follower`, `none`) and the lane departure checker on its predicted trajectory. Boundary topics are `input/*` arguments, so the unit can also drive a standalone follower container.
 - `command_gate/command_gate.launch.xml` — the control command gate with the stop mode operator, plus the shift decider and the operation mode transition manager. `input/control_cmd` and `output/*_cmd` are its boundary topics.
-- `external_command/external_command.launch.xml` — the external command selector and converter.
+- `external_command/external_command.launch.xml` — the external command converters, one each for the local and remote sources. Each converts its pedals and steering commands into a control command for the corresponding input of the control command gate.
 - `control_checker/control_checker.launch.xml` — the control validator, autonomous emergency braking, collision detector, obstacle collision checker and predicted path checker, each behind its `launch_*` flag.
 
 Every unit accepts `target_container`, `use_intra_process` and `ld_preload_value`, so process placement is decided by the caller; parameter files default to the `autoware_control_config` tree and are overridden by the entry point.

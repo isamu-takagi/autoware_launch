@@ -18,14 +18,12 @@ units:
   - path: /autoware/control/local
     type: and
     list:
-      - { type: link, link: /autoware/control/topic_rate_check/external_cmd_selector }
-      - { type: link, link: /autoware/control/topic_rate_check/external_cmd_converter }
+      - { type: link, link: /autoware/control/topic_rate_check/external_cmd_converter_local }
 
   - path: /autoware/control/remote
     type: and
     list:
-      - { type: link, link: /autoware/control/topic_rate_check/external_cmd_selector }
-      - { type: link, link: /autoware/control/topic_rate_check/external_cmd_converter }
+      - { type: link, link: /autoware/control/topic_rate_check/external_cmd_converter_remote }
 
   - path: /autoware/control/topic_rate_check/trajectory_follower
     type: diag
@@ -62,12 +60,12 @@ units:
     node: controller_node_exe
     name: control_state
 
-  - path: /autoware/control/topic_rate_check/external_cmd_selector
+  - path: /autoware/control/topic_rate_check/external_cmd_converter_local
     type: diag
-    node: external_cmd_selector
-    name: heartbeat
+    node: external_cmd_converter_local
+    name: remote_control_topic_status
 
-  - path: /autoware/control/topic_rate_check/external_cmd_converter
+  - path: /autoware/control/topic_rate_check/external_cmd_converter_remote
     type: diag
-    node: external_cmd_converter
+    node: external_cmd_converter_remote
     name: remote_control_topic_status

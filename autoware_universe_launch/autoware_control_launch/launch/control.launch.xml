@@ -41,7 +41,6 @@
   <arg name="control_command_gate_param_path" default="$(var control_config_dir)/control_command_gate/control_command_gate.param.yaml"/>
   <arg name="operation_mode_transition_manager_param_path" default="$(var control_config_dir)/operation_mode_transition_manager/operation_mode_transition_manager.param.yaml"/>
   <arg name="shift_decider_param_path" default="$(var control_config_dir)/shift_decider/shift_decider.param.yaml"/>
-  <arg name="external_cmd_selector_param_path" default="$(var control_config_dir)/external_cmd_selector/external_cmd_selector.param.yaml"/>
 
   <!-- Parameter paths: control checkers -->
   <arg name="lane_departure_checker_param_path" default="$(var control_config_dir)/lane_departure_checker/lane_departure_checker.param.yaml"/>
@@ -118,9 +117,7 @@
     <!-- external command -->
     <group>
       <include file="$(find-pkg-share autoware_control_launch)/launch/external_command/external_command.launch.xml">
-        <arg name="launch_external_cmd_selector" value="$(var launch_external_cmd_selector)"/>
         <arg name="launch_external_cmd_converter" value="$(var launch_external_cmd_converter)"/>
-        <arg name="external_cmd_selector_param_path" value="$(var external_cmd_selector_param_path)"/>
         <arg name="target_container" value="/control/control_container"/>
         <arg name="use_intra_process" value="$(var use_intra_process)"/>
       </include>

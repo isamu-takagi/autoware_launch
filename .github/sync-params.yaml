@@ -412,9 +412,6 @@ control:
       - source: control/autoware_control_validator/config/control_validator.param.yaml
         variants:
           - path: autoware_universe_launch/autoware_control_config/config/control_validator/control_validator.param.yaml
-      - source: control/autoware_external_cmd_selector/config/external_cmd_selector.param.yaml
-        variants:
-          - path: autoware_universe_launch/autoware_control_config/config/external_cmd_selector/external_cmd_selector.param.yaml
       - source: control/autoware_lane_departure_checker/config/lane_departure_checker.param.yaml
         variants:
           - path: autoware_universe_launch/autoware_control_config/config/lane_departure_checker/lane_departure_checker.param.yaml
