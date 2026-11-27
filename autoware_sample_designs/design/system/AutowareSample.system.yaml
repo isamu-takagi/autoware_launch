@@ -296,25 +296,42 @@ connections:
   - - system.publisher.fail_safe/mrm_state
     - adapi.subscriber.system/fail_safe/mrm_state
 
-  - - localization.publisher.kinematic_state
-    - system.subscriber.kinematic_state
   - - control.publisher.command/control_cmd
     - system.subscriber.control_cmd
-  - - control.publisher.command/gear_cmd
-    - system.subscriber.gear_cmd
-  - - adapi.publisher.api/operation_mode/state
-    - system.subscriber.api_operation_mode_state
-
   - - system.publisher.emergency/control_cmd
     - control.subscriber.emergency_control_cmd
-  - - system.publisher.emergency/turn_indicators_cmd
-    - control.subscriber.emergency_turn_indicators_cmd
-  - - system.publisher.emergency/hazard_lights_cmd
-    - control.subscriber.emergency_hazard_lights_cmd
-  - - system.publisher.emergency/hazard_lights_cmd
-    - planning.subscriber.system_hazard_lights_cmd
-  - - system.publisher.emergency/gear_cmd
-    - control.subscriber.emergency_gear_cmd
+
+  # driving mode management
+  - - system.publisher.operation_mode/state
+    - planning.subscriber.operation_mode_state
+  - - system.publisher.operation_mode/state
+    - control.subscriber.operation_mode_state
+  - - system.publisher.operation_mode/state
+    - vehicle.subscriber.operation_mode_state
+  - - system.publisher.operation_mode/state
+    - adapi.subscriber.system/operation_mode/state
+  - - system.server.operation_mode/change_operation_mode
+    - adapi.client.system/operation_mode/change_operation_mode
+  - - system.server.operation_mode/change_autoware_control
+    - adapi.client.system/operation_mode/change_autoware_control
+  - - system.publisher.driving_mode/info
+    - control.subscriber.driving_mode/info
+  - - control.publisher.driving_mode/stable
+    - system.subscriber.driving_mode/stable
+  - - control.publisher.trajectory/source/status
+    - system.subscriber.trajectory/source/status
+  - - control.server.trajectory/source/change
+    - system.client.trajectory/source/change
+  - - control.publisher.command/source/status
+    - system.subscriber.command/source/status
+  - - control.publisher.command/filter/status
+    - system.subscriber.command/filter/status
+  - - control.server.command/source/change
+    - system.client.command/source/change
+  - - control.server.command/filter/change
+    - system.client.command/filter/change
+  - - vehicle.server.control_mode_request
+    - system.client.control_mode_request
 
   - - control.publisher.command/control_cmd
     - vehicle.subscriber.control_cmd
@@ -554,6 +571,12 @@ remaps:
     topic: /api/vehicle/doors/layout
   - source: adapi.server.autoware/shutdown
     topic: /autoware/shutdown
+  - source: system.publisher.operation_mode/state
+    topic: /system/operation_mode/state
+  - source: system.server.operation_mode/change_operation_mode
+    topic: /system/operation_mode/change_operation_mode
+  - source: system.server.operation_mode/change_autoware_control
+    topic: /system/operation_mode/change_autoware_control
   - source: system.publisher.diagnostics_graph/struct
     topic: /diagnostics_graph/struct
   - source: system.publisher.diagnostics_graph/status
@@ -698,6 +721,10 @@ E2ESimulation:
         - control.subscriber.gear_status
       - - awsim.publisher.vehicle/status/control_mode
         - control.subscriber.control_mode_report
+      - - awsim.publisher.vehicle/status/control_mode
+        - system.subscriber.control_mode
+      - - awsim.server.control/control_mode_request
+        - system.client.control_mode_request
       - - control.publisher.command/control_cmd
         - awsim.subscriber.control/command/control_cmd
       - - control.publisher.command/gear_cmd
@@ -837,6 +864,8 @@ PlanningSimulation:
         - control.subscriber.steering_status
       - - simulator.publisher.vehicle/status/steering_status
         - planning.subscriber.steering_status
+      - - simulator.server.control/control_mode_request
+        - system.client.control_mode_request
       - - simulator.publisher.vehicle/status/actuation_status
         - vehicle.subscriber.actuation_status
       - - vehicle.publisher.actuation_cmd
@@ -868,6 +897,8 @@ PlanningSimulation:
         - planning.subscriber.acceleration
       - - simulator.publisher.vehicle/status/control_mode
         - control.subscriber.control_mode_report
+      - - simulator.publisher.vehicle/status/control_mode
+        - system.subscriber.control_mode
     remaps:
       # planning_sim_rviz_plugin
       - source: planning_sim_rviz_plugin.publisher.simulation/dummy_perception_publisher/object_info

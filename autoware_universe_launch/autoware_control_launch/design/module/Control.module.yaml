@@ -4,6 +4,8 @@ autoware_system_design_format: 0.3.1
 name: Control.module
 
 instances:
+  - name: trajectory_gate
+    entity: TrajectoryGate.node
   - name: trajectory_follower
     entity: TrajectoryFollower.module
   - name: command_gate
@@ -65,6 +67,8 @@ subscribers:
   - name: emergency_hazard_lights_cmd
   - name: emergency_gear_cmd
 
+  - name: driving_mode/info
+
 publishers:
   - name: command/control_cmd
   - name: command/gear_cmd
@@ -73,19 +77,30 @@ publishers:
   - name: predicted_trajectory
   - name: external_emergency
   - name: control_evaluation
+  - name: driving_mode/stable
+  - name: trajectory/source/status
+  - name: command/source/status
+  - name: command/filter/status
   # official interfaces published under fixed node paths
   - name: vehicle_cmd_gate/is_paused
   - name: vehicle_cmd_gate/is_start_requested
   - name: vehicle_cmd_gate/is_stopped
 
 servers:
+  - name: trajectory/source/change
+  - name: command/source/change
+  - name: command/filter/change
   - name: external_emergency_service
   - name: vehicle_cmd_gate/set_pause
   - name: vehicle_cmd_gate/set_stop
 
 connections:
-  # TrajectoryFollower module
+  # TrajectoryGate
   - - subscriber.trajectory
+    - trajectory_gate.subscriber.main_trajectory
+
+  # TrajectoryFollower module
+  - - trajectory_gate.publisher.trajectory
     - trajectory_follower.subscriber.trajectory
   - - subscriber.odometry
     - trajectory_follower.subscriber.odometry
@@ -247,6 +262,24 @@ connections:
     - publisher.vehicle_cmd_gate/is_start_requested
   - - command_gate.publisher.is_stopped
     - publisher.vehicle_cmd_gate/is_stopped
+
+  # driving mode management ports
+  - - subscriber.driving_mode/info
+    - command_gate.subscriber.driving_mode/info
+  - - command_gate.publisher.driving_mode/stable
+    - publisher.driving_mode/stable
+  - - trajectory_gate.publisher.source_status
+    - publisher.trajectory/source/status
+  - - trajectory_gate.server.source_change
+    - server.trajectory/source/change
+  - - command_gate.publisher.command/source/status
+    - publisher.command/source/status
+  - - command_gate.publisher.command/filter/status
+    - publisher.command/filter/status
+  - - command_gate.server.command/source/change
+    - server.command/source/change
+  - - command_gate.server.command/filter/change
+    - server.command/filter/change
 
   # Publishers
   - - command_gate.publisher.command/control_cmd

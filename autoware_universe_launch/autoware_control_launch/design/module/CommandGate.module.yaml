@@ -43,6 +43,8 @@ subscribers:
   - name: emergency_hazard_lights_cmd
   - name: emergency_gear_cmd
 
+  - name: driving_mode/info
+
 publishers:
   - name: command/control_cmd
   - name: command/gear_cmd
@@ -52,11 +54,16 @@ publishers:
   - name: is_paused
   - name: is_start_requested
   - name: is_stopped
+  - name: driving_mode/stable
+  - name: command/source/status
+  - name: command/filter/status
 
 servers:
   - name: external_emergency_service
   - name: set_pause
   - name: set_stop
+  - name: command/source/change
+  - name: command/filter/change
 
 connections:
   # ShiftDecider
@@ -136,6 +143,8 @@ connections:
     - autoware_operation_mode_transition_manager.subscriber.control_cmd
   - - subscriber.control_cmd
     - autoware_operation_mode_transition_manager.subscriber.trajectory_follower_control_cmd
+  - - subscriber.driving_mode/info
+    - autoware_operation_mode_transition_manager.subscriber.driving_mode_info
 
   # StopModeOperator
   - - subscriber.route_state
@@ -160,6 +169,18 @@ connections:
     - server.set_pause
   - - control_command_gate.server.set_stop
     - server.set_stop
+
+  # driving mode management ports
+  - - autoware_operation_mode_transition_manager.publisher.driving_mode_stable
+    - publisher.driving_mode/stable
+  - - control_command_gate.publisher.source_status
+    - publisher.command/source/status
+  - - control_command_gate.publisher.filter_status
+    - publisher.command/filter/status
+  - - control_command_gate.server.source_change
+    - server.command/source/change
+  - - control_command_gate.server.filter_change
+    - server.command/filter/change
 
   # Publishers
   - - control_command_gate.publisher.control

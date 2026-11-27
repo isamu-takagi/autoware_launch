@@ -1,7 +1,7 @@
 autoware_system_design_format: 0.3.1
 
 # module information
-# System monitoring and fail-safe: diagnostic graph, component state, MRM handling and host monitors.
+# System monitoring and fail-safe: diagnostic graph, component state, driving mode management, MRM operators and host monitors.
 name: System.module
 
 instances:
@@ -23,8 +23,8 @@ instances:
     entity: HazardStatusConverter.node
   - name: logging_diag_graph
     entity: DiagnosticGraphLogging.node
-  - name: mrm_handler
-    entity: MrmHandler.node
+  - name: driving_mode_manager
+    entity: DrivingModeManager.node
   - name: mrm_comfortable_stop_operator
     entity: MrmComfortableStopOperator.node
   - name: mrm_emergency_stop_operator
@@ -33,10 +33,11 @@ instances:
 # interfaces
 subscribers:
   - name: control_cmd
-  - name: gear_cmd
-  - name: kinematic_state
   - name: control_mode
-  - name: api_operation_mode_state
+  - name: driving_mode/stable
+  - name: trajectory/source/status
+  - name: command/source/status
+  - name: command/filter/status
 
 publishers:
   - name: component_state_monitor/component/launch/sensing
@@ -63,16 +64,23 @@ publishers:
   - name: driving_mode/available
   - name: driving_mode/continuable
   - name: fail_safe/mrm_state
+  - name: operation_mode/state
+  - name: driving_mode/info
   - name: emergency/hazard_status
   - name: emergency/control_cmd
-  - name: emergency/gear_cmd
-  - name: emergency/turn_indicators_cmd
-  - name: emergency/hazard_lights_cmd
   - name: velocity_limit
   - name: velocity_limit/clear
 
 servers:
   - name: diagnostics_graph/reset
+  - name: operation_mode/change_operation_mode
+  - name: operation_mode/change_autoware_control
+
+clients:
+  - name: trajectory/source/change
+  - name: command/source/change
+  - name: command/filter/change
+  - name: control_mode_request
 
 connections:
   # diagnostic graph consumers, wired before the boundary export so the exported topic names win
@@ -86,30 +94,35 @@ connections:
     - logging_diag_graph.subscriber.diag_graph_status
   - - aggregator.publisher.command_mode_availability
     - converter.subscriber.command_mode_availability
-  - - converter.publisher.operation_mode_availability
-    - mrm_handler.subscriber.operation_mode_availability
 
-  # MRM handler inputs and operators
-  - - subscriber.kinematic_state
-    - mrm_handler.subscriber.odometry
+  # driving mode manager inputs: mode flags, gate and vehicle status
+  - - aggregator.publisher.driving_mode_available
+    - driving_mode_manager.subscriber.driving_mode_available
+  - - aggregator.publisher.driving_mode_continuable
+    - driving_mode_manager.subscriber.driving_mode_continuable
+  - - subscriber.driving_mode/stable
+    - driving_mode_manager.subscriber.driving_mode_stable
+  # the MRM operators report their state on the shared /system/driving_mode/mrm_state (global port)
+  - - subscriber.trajectory/source/status
+    - driving_mode_manager.subscriber.trajectory_source_status
+  - - subscriber.command/source/status
+    - driving_mode_manager.subscriber.command_source_status
+  - - subscriber.command/filter/status
+    - driving_mode_manager.subscriber.command_filter_status
   - - subscriber.control_mode
-    - mrm_handler.subscriber.control_mode
-  - - subscriber.gear_cmd
-    - mrm_handler.subscriber.gear
-  - - subscriber.api_operation_mode_state
-    - mrm_handler.subscriber.operation_mode_state
+    - driving_mode_manager.subscriber.control_mode_report
+
+  # MRM operators
   - - subscriber.control_cmd
     - mrm_emergency_stop_operator.subscriber.control_cmd
-  - - mrm_handler.client.comfortable_stop_operate
-    - mrm_comfortable_stop_operator.server.operate
-  - - mrm_handler.client.emergency_stop_operate
-    - mrm_emergency_stop_operator.server.operate
-  - - mrm_comfortable_stop_operator.publisher.status
-    - mrm_handler.subscriber.comfortable_stop_status
-  - - mrm_emergency_stop_operator.publisher.status
-    - mrm_handler.subscriber.emergency_stop_status
-  - - mrm_handler.publisher.emergency_holding
-    - hazard_status_converter.subscriber.emergency_holding
+  - - driving_mode_manager.publisher.driving_mode_request
+    - mrm_comfortable_stop_operator.subscriber.driving_mode_request
+  - - driving_mode_manager.publisher.driving_mode_info
+    - mrm_comfortable_stop_operator.subscriber.driving_mode_info
+  - - driving_mode_manager.publisher.driving_mode_request
+    - mrm_emergency_stop_operator.subscriber.driving_mode_request
+  - - driving_mode_manager.publisher.driving_mode_info
+    - mrm_emergency_stop_operator.subscriber.driving_mode_info
 
   # outputs
   - - component_state_monitor.publisher.^
@@ -132,14 +145,24 @@ connections:
     - publisher.operation_mode/availability
   - - hazard_status_converter.publisher.hazard_status
     - publisher.emergency/hazard_status
-  - - mrm_handler.publisher.mrm_state
+  - - driving_mode_manager.publisher.mrm_state
     - publisher.fail_safe/mrm_state
-  - - mrm_handler.publisher.gear
-    - publisher.emergency/gear_cmd
-  - - mrm_handler.publisher.turn_indicators
-    - publisher.emergency/turn_indicators_cmd
-  - - mrm_handler.publisher.hazard
-    - publisher.emergency/hazard_lights_cmd
+  - - driving_mode_manager.publisher.operation_mode_state
+    - publisher.operation_mode/state
+  - - driving_mode_manager.publisher.driving_mode_info
+    - publisher.driving_mode/info
+  - - driving_mode_manager.server.change_operation_mode
+    - server.operation_mode/change_operation_mode
+  - - driving_mode_manager.server.change_autoware_control
+    - server.operation_mode/change_autoware_control
+  - - driving_mode_manager.client.trajectory_source_change
+    - client.trajectory/source/change
+  - - driving_mode_manager.client.command_source_change
+    - client.command/source/change
+  - - driving_mode_manager.client.command_filter_change
+    - client.command/filter/change
+  - - driving_mode_manager.client.control_mode_command
+    - client.control_mode_request
   - - mrm_emergency_stop_operator.publisher.control_cmd
     - publisher.emergency/control_cmd
   - - mrm_comfortable_stop_operator.publisher.velocity_limit
